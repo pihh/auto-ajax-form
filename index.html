@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title>Mariana Framework Ajax Form Snippet</title>
+	</head>
+	<body>
+		<h2>Mariana Framework: <small>auto ajax submit form</small></h2>
+		<form id="mariana-form" 
+			ajax="true" 
+			type="POST" 
+			success="callback(data)" 
+			complete="callback2(data)"
+			action="ajax.php">
+			<input type="text" name="text-input-1" /><br>
+			<input type="file" name="file-input-1" /><br>
+			<button type="submit">Submit</button><br>
+		</form>
+		<div >
+			<ul id="appendResults">
+
+			</ul>
+		</div>
+		<script src="http://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
+		<script src="js/marianaAjax.js"></script>
+		<script>
+
+			var callback = function(data){
+				$('#appendResults').html('');
+				$.each(data, function(i){
+					$('#appendResults').append(JSON.stringify(data[i]));	
+				});
+			};
+
+			var callback2 = function(data){
+				console.log('Second callback');
+				console.log(data);
+			};
+		</script>
+	</body>
+</html>		
